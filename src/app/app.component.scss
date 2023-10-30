@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.infinite-cards {
+  nb-card {
+    &.own-scroll {
+      height: 50vh;
+    }
+  }
+}

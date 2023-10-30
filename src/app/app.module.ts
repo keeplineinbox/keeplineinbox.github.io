@@ -7,6 +7,8 @@ import { OsgovtsComponent } from './components/osgovts/osgovts.component';
 import { CreateOsgovtsComponent } from './components/osgovts/create-osgovts/create-osgovts.component';
 import { RenewOsgovtsComponent } from './components/osgovts/renew-osgovts/renew-osgovts.component';
 import { EditOsgovtsComponent } from './components/osgovts/edit-osgovts/edit-osgovts.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { EditOsgovtsComponent } from './components/osgovts/edit-osgovts/edit-osg
     OsgovtsComponent,
     CreateOsgovtsComponent,
     RenewOsgovtsComponent,
-    EditOsgovtsComponent
+    EditOsgovtsComponent,
+    NotFoundComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

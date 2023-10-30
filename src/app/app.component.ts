@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { EMPTY, catchError, finalize } from 'rxjs';
 import { ApiService } from './services/api.service';
+import { NewsService } from './services/news.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ngx-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   //imports: [CommonModule, RouterOutlet],
@@ -13,6 +14,8 @@ import { ApiService } from './services/api.service';
 
 export class AppComponent {
   title = 'Insurance.Agent.Client';
+
+  constructor(private newsService: NewsService) {}
 
   userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
   isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
