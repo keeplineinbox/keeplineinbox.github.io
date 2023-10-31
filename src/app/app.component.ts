@@ -1,27 +1,42 @@
-import { Component, inject, signal  } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { EMPTY, catchError, finalize } from 'rxjs';
-import { ApiService } from './services/api.service';
-import { NewsService } from './services/news.service';
+//import { Component, inject, signal  } from '@angular/core';
+
+import {Component, OnInit, signal} from '@angular/core';
+import {NgIf} from '@angular/common';
+import {Router, RouterOutlet} from '@angular/router';
+import {ToastModule} from 'primeng/toast';
+import {BreadcrumbComponent} from './layout/index';
+
 
 @Component({
-  selector: 'ngx-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  //imports: [CommonModule, RouterOutlet],
+  standalone: true,
+  imports: [
+    NgIf,
+    BreadcrumbComponent,
+    RouterOutlet,
+  ],
 })
-
-export class AppComponent {
-  title = 'Insurance.Agent.Client';
-
-  constructor(private newsService: NewsService) {}
-
-  userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
+export class AppComponent implements OnInit {
+  
   isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
-  apiService = inject(ApiService);
-  isLoading = signal(false);
-  error = signal('');
+
+  constructor(private router: Router)
+  { }
+
+  ngOnInit(): void {
+    if(signal(!!window.Telegram.WebApp?.initDataUnsafe?.user))
+    {
+      this.router.parseUrl('/unauthorized')
+    }
+  }
+}
+  //userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
+  //isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
+  //apiService = inject(ApiService);
+  //isLoading = signal(false);
+  //error = signal('');
   // counter$ = this.apiService.countUsers();
 
   // onSubmit() {
@@ -39,4 +54,4 @@ export class AppComponent {
   //     })
   //   ).subscribe();
   // }
-}
+//}

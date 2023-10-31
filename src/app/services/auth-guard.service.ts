@@ -14,6 +14,6 @@ export class AuthGuardService {
         return true;
     }
 
-    return this.router.parseUrl('/notfound');
+    return this.router.parseUrl('/unauthorized');
   }
 }

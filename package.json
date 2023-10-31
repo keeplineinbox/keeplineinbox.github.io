@@ -21,6 +21,7 @@
     "@twa-dev/types": "^6.9.0",
     "guid-typescript": "^1.0.9",
     "ngrok": "^5.0.0-beta.2",
+    "primeng": "^16.6.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
