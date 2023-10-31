@@ -12,7 +12,7 @@ export class AuthGuardService {
     if (!!window.Telegram.WebApp?.initDataUnsafe?.user) {
       return true;
     }
-
-    return this.router.parseUrl('/unauthorized');
+    return true;
+    //return this.router.parseUrl('/unauthorized');
   }
 }

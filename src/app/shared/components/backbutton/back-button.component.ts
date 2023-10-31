@@ -8,7 +8,7 @@ import { BackButton } from '@twa-dev/types';
   standalone: true,
 })
 export class BackButtonComponent  {
-  BackButton: BackButton = window.Telegram.WebApp.BackButton;
+  BackButton: BackButton = window.Telegram.WebApp?.BackButton;
 
   goBack() {
     this.BackButton.onClick(() => window.history.back());
