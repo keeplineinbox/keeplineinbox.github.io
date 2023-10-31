@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, signal, OnInit, ViewEncapsulation} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {SkeletonModule} from 'primeng/skeleton';
@@ -21,5 +21,6 @@ import {CardModule} from 'primeng/card';
   ],
 })
 export class ProductsComponent {
-
+  userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
+  isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
 }

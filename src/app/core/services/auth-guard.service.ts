@@ -9,9 +9,8 @@ export class AuthGuardService {
   constructor(private router: Router) { }
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if (signal(!!window.Telegram.WebApp?.initDataUnsafe?.user)) {
-        return true;
+    if (!!window.Telegram.WebApp?.initDataUnsafe?.user) {
+      return true;
     }
 
     return this.router.parseUrl('/unauthorized');

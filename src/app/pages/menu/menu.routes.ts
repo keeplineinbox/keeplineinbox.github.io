@@ -15,6 +15,7 @@ export const MENU_ROUTES: Routes = [
   {
     path: 'osgovts',
     loadChildren: () => import('./osgovts').then((m) => m.OSGOVTS_ROUTES),
+    canActivate: [AuthGuardService],
     data: {
       breadcrumb: 'Osgovts',
     },
@@ -22,6 +23,7 @@ export const MENU_ROUTES: Routes = [
   {
     path: 'travel',
     loadChildren: () => import('./travel').then((m) => m.TRAVEL_ROUTES),
+    canActivate: [AuthGuardService],
     data: {
       breadcrumb: 'Travel',
     },

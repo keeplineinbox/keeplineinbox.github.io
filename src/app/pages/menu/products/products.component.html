@@ -4,6 +4,7 @@
 			<div class="flex flex-wrap gap-2">
 				<button pButton pRipple label="Osgovts" icon="pi pi-star-fill" routerLink="/menu/osgovts/"></button>
 				<button pButton pRipple label="Travel" icon="pi pi-bookmark" routerLink="/menu/travel/"></button>
+				<h2 *ngIf="isAuthenticated()" class="text-center py-4 font-bold text-xl text-slate-600">Welcome {{userName()}}></h2>
 			</div>
 		</div>
     </div>
