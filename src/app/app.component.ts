@@ -2,7 +2,7 @@ import {Component, OnInit, signal} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
 import {BreadcrumbComponent} from './layout/index';
-import { BackButtonComponent } from './shared/components/backbutton/back-button.component';
+import { BackButton } from '@twa-dev/types';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +13,17 @@ import { BackButtonComponent } from './shared/components/backbutton/back-button.
     NgIf,
     BreadcrumbComponent,
     RouterOutlet,
-    BackButtonComponent,
   ],
 })
 export class AppComponent implements OnInit {
   
-  isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
+  BackButton: BackButton = window.Telegram.WebApp?.BackButton;
 
   constructor(private router: Router)
   { }
 
   ngOnInit(): void {
-    if(signal(!!window.Telegram.WebApp?.initDataUnsafe?.user))
-    {
-      this.router.parseUrl('/unauthorized')
-    }
+    this.BackButton.hide();
   }
 }
   //userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
