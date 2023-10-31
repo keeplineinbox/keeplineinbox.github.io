@@ -24,13 +24,13 @@ import { BackButton } from '@twa-dev/types';
 export class MenuOsgovtsComponent {
   BackButton: BackButton = window.Telegram.WebApp?.BackButton;
   
-  constructor(private location: Location)
+  constructor(private location: RouterLink)
   { }
 
   ngOnInit(): void {
     this.BackButton.show();
-    this.BackButton.onClick = () => {
-      this.location.back();
-    };
+    this.BackButton.onClick(() => {
+      window.history.pushState({ path: this.location.href }, 'Menu', this.location.href);
+    });
   }
 }
