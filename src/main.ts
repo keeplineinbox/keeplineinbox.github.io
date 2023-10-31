@@ -3,7 +3,7 @@ import {provideRouter} from '@angular/router';
 import {withInterceptorsFromDi, provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {BrowserModule, bootstrapApplication} from '@angular/platform-browser';
-import {AuthGuardService} from './app/services/auth-guard.service';
+import {CoreModule} from './app/core/core.module';
 import {APP_ROUTES} from './app/app.routes';
 import {AppComponent} from './app/app.component';
 import {environment} from './environments/environment';
@@ -18,7 +18,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(APP_ROUTES),
     importProvidersFrom(
         BrowserModule,
-        AuthGuardService,
+        CoreModule,
     ),
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),

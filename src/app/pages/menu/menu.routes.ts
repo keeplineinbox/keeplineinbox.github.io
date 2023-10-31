@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {AuthGuardService} from '../../services/auth-guard.service';
+import {AuthGuardService} from '../../core/services/auth-guard.service';
 import {MenuComponent} from './menu.component';
 
 

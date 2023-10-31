@@ -3,7 +3,6 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
-import {ToastModule} from 'primeng/toast';
 import {BreadcrumbComponent} from './layout/index';
 
 
