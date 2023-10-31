@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, Location} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {SharedModule} from 'primeng/api';
 import {CardModule} from 'primeng/card';
 import {TooltipModule} from 'primeng/tooltip';
 import {ButtonModule} from 'primeng/button';
-
+import { BackButton } from '@twa-dev/types';
 
 @Component({
   selector: 'app-menu-osgovts',
@@ -22,5 +22,15 @@ import {ButtonModule} from 'primeng/button';
   ],
 })
 export class MenuOsgovtsComponent {
-  constructor() { }
+  BackButton: BackButton = window.Telegram.WebApp?.BackButton;
+  
+  constructor(private location: Location)
+  { }
+
+  ngOnInit(): void {
+    this.BackButton.show();
+    this.BackButton.onClick = () => {
+      this.location.back();
+    };
+  }
 }
