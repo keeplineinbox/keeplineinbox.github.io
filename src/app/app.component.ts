@@ -1,10 +1,7 @@
-//import { Component, inject, signal  } from '@angular/core';
-
 import {Component, OnInit, signal} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
 import {BreadcrumbComponent} from './layout/index';
-
 
 @Component({
   selector: 'app-root',
