@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {AuthGuardService} from '../../core/services/auth-guard.service';
+import {AuthGuardService} from '../../../core/services/auth-guard.service';
 import {CreateOsgovtsComponent} from './create-osgovts/create-osgovts.component';
 import {EditOsgovtsComponent} from './edit-osgovts/edit-osgovts.component';
 import {RenewOsgovtsComponent} from './renew-osgovts/renew-osgovts.component';

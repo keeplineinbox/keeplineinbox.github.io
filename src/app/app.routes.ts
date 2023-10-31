@@ -7,6 +7,7 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     redirectTo: 'menu',
+    pathMatch: 'full'
   },
   {
     path: 'unauthorized',
@@ -19,19 +20,8 @@ export const APP_ROUTES: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./pages/menu').then((m) => m.MENU_ROUTES),
-  },
-  {
-    path: 'osgovts',
-    loadChildren: () => import('./pages/osgovts').then((m) => m.OSGOVTS_ROUTES),
     data: {
-      breadcrumb: 'Osgovts',
-    },
-  },
-  {
-    path: 'travel',
-    loadChildren: () => import('./pages/travel').then((m) => m.TRAVEL_ROUTES),
-    data: {
-      breadcrumb: 'Travel',
+      breadcrumb: 'Menu',
     },
   },
   {
