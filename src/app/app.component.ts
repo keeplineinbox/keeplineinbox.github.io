@@ -2,6 +2,7 @@ import {Component, OnInit, signal} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
 import {BreadcrumbComponent} from './layout/index';
+import { BackButtonComponent } from './shared/components/backbutton/back-button.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import {BreadcrumbComponent} from './layout/index';
     NgIf,
     BreadcrumbComponent,
     RouterOutlet,
+    BackButtonComponent,
   ],
 })
 export class AppComponent implements OnInit {
