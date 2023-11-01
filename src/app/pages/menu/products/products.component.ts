@@ -24,8 +24,4 @@ import { BackButton } from '@twa-dev/types';
 export class ProductsComponent {
   isAuthenticated = signal(!!window.Telegram.WebApp?.initDataUnsafe?.user);
   userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
-  BackButton: BackButton = window.Telegram.WebApp?.BackButton;
-  ngOnInit(): void {
-    this.BackButton.hide();
-  }
 }

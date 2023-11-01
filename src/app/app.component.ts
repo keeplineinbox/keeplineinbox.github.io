@@ -17,13 +17,14 @@ import { BackButton } from '@twa-dev/types';
 })
 export class AppComponent implements OnInit {
   
-  BackButton: BackButton = window.Telegram.WebApp?.BackButton;
+  backButton: BackButton = window.Telegram.WebApp?.BackButton;
 
   constructor(private router: Router)
   { }
 
   ngOnInit(): void {
-    this.BackButton.hide();
+    this.backButton.show();
+    this.backButton.onClick(() => window.history.back());
   }
 }
   //userName = signal(window.Telegram.WebApp?.initDataUnsafe?.user?.first_name);
