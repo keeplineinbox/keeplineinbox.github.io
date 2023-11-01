@@ -29,14 +29,8 @@ export class MenuOsgovtsComponent {
 
   ngOnInit(): void {
     this.BackButton.show();
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        const previousUrl = event?.url;
-        console.log(previousUrl);
-        this.BackButton.onClick(() => {
-          window.history.pushState({ path: previousUrl }, '', previousUrl);
-        });
-      }
+    this.BackButton.onClick(() => {
+      window.history.back();
     });
   }
 }
