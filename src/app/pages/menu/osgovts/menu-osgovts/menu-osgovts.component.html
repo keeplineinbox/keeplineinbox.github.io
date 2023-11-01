@@ -1,11 +1,25 @@
-<div class="grid">
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<div class="flex flex-wrap gap-2">
-				<button pButton pRipple label="Renew existed" icon="pi pi-star-fill" routerLink="/menu/osgovts/renew"></button>
-				<button pButton pRipple label="Create new" icon="pi pi-bookmark" routerLink="/menu/osgovts/create"></button>
-				<button pButton pRipple label="Edit existed" icon="pi pi-bookmark" routerLink="/menu/osgovts/edit"></button>
-			</div>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+	<!-- <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+	  <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Виды страхования</h2>
+	</div> -->
+  
+	<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+	  <div class="space-y-6">
+		<div>
+		  <button routerLink="/menu/osgovts/renew" type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+			Продлить полис
+		  </button>
 		</div>
-    </div>
-</div>
+		<div>
+		  <button routerLink="/menu/osgovts/create" type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+			Создать новый полис
+		  </button>
+		</div>
+		<div>
+		  <button routerLink="/menu/osgovts/edit" type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+			Изменить полис
+		  </button>
+		</div>
+	  </div>
+	</div>
+  </div>
