@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule, Location} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import {SharedModule} from 'primeng/api';
 import {CardModule} from 'primeng/card';
 import {TooltipModule} from 'primeng/tooltip';
@@ -24,13 +24,19 @@ import { BackButton } from '@twa-dev/types';
 export class MenuOsgovtsComponent {
   BackButton: BackButton = window.Telegram.WebApp?.BackButton;
   
-  constructor(private location: RouterLink)
+  constructor(private router: Router)
   { }
 
   ngOnInit(): void {
     this.BackButton.show();
-    this.BackButton.onClick(() => {
-      window.history.pushState({ path: this.location.href }, 'Menu', this.location.href);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const previousUrl = event?.url;
+        console.log(previousUrl);
+        this.BackButton.onClick(() => {
+          window.history.pushState({ path: previousUrl }, '', previousUrl);
+        });
+      }
     });
   }
 }
