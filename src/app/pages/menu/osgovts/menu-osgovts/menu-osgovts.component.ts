@@ -1,10 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule, Location} from '@angular/common';
 import {NavigationEnd, Router, RouterLink} from '@angular/router';
-import {SharedModule} from 'primeng/api';
-import {CardModule} from 'primeng/card';
-import {TooltipModule} from 'primeng/tooltip';
-import {ButtonModule} from 'primeng/button';
 import { BackButton } from '@twa-dev/types';
 
 @Component({
@@ -14,11 +10,7 @@ import { BackButton } from '@twa-dev/types';
   standalone: true,
   imports: [
     CommonModule,
-    ButtonModule,
-    TooltipModule,
     RouterLink,
-    CardModule,
-    SharedModule,
   ],
 })
 export class MenuOsgovtsComponent {

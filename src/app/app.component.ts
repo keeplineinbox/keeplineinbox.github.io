@@ -1,7 +1,6 @@
 import {Component, OnInit, signal} from '@angular/core';
-import {NgIf} from '@angular/common';
-import {Router, RouterOutlet} from '@angular/router';
-import {BreadcrumbComponent} from './layout/index';
+import { NgIf} from '@angular/common';
+import { RouterOutlet} from '@angular/router';
 import { BackButton } from '@twa-dev/types';
 
 @Component({
@@ -11,7 +10,6 @@ import { BackButton } from '@twa-dev/types';
   standalone: true,
   imports: [
     NgIf,
-    BreadcrumbComponent,
     RouterOutlet,
   ],
 })
@@ -19,7 +17,7 @@ export class AppComponent implements OnInit {
   
   backButton: BackButton = window.Telegram.WebApp?.BackButton;
 
-  constructor(private router: Router)
+  constructor()
   { }
 
   ngOnInit(): void {
