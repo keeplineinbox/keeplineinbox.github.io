@@ -1,4 +1,4 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, effect, OnInit, signal} from '@angular/core';
 import { NgIf} from '@angular/common';
 import { RouterOutlet} from '@angular/router';
 import { BackButton } from '@twa-dev/types';
@@ -16,9 +16,14 @@ import { BackButton } from '@twa-dev/types';
 export class AppComponent implements OnInit {
   
   backButton: BackButton = window.Telegram.WebApp?.BackButton;
+  isDark = window.Telegram.WebApp?.colorScheme == 'light' ? false : true;
 
   constructor()
-  { }
+  { 
+    effect(() => {
+      window.localStorage.setItem('darkMode', JSON.stringify(this.isDark));
+    });
+  }
 
   ngOnInit(): void {
     this.backButton.show();
