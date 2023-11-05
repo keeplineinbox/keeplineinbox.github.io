@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   
   backButton: BackButton = window.Telegram.WebApp?.BackButton;
   isDark = window.Telegram.WebApp?.colorScheme == 'light' ? false : true;
-  isTG = window.Telegram.WebApp == null;
+  isTG = window.Telegram.WebApp != null;
   ///isDark = false;
   
   constructor(private renderer: Renderer2)
