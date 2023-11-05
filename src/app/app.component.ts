@@ -16,14 +16,17 @@ import { BackButton } from '@twa-dev/types';
 export class AppComponent implements OnInit {
   
   backButton: BackButton = window.Telegram.WebApp?.BackButton;
-  isDark = window.Telegram.WebApp?.colorScheme == 'light' ? false : true;
-  isTG = window.Telegram.WebApp != null;
+  isDark = window.Telegram.WebApp?.colorScheme == 'dark' ? true : false;
+  isAuthenticated = !!window.Telegram.WebApp?.initDataUnsafe?.user;
+  
   ///isDark = false;
   
   constructor(private renderer: Renderer2)
   { 
+    console.log('isAuthenticated ' + this.isAuthenticated);
+    console.log('isDark ' + this.isDark);
     this.isDark == true? this.renderer.addClass(document.body, 'dark') :  this.renderer.removeClass(document.body, 'dark');
-    if(this.isTG)
+    if(this.isAuthenticated)
     {
       this.renderer.removeClass(document.body, 'bg-white');
       this.renderer.removeClass(document.body, 'bg-white');
