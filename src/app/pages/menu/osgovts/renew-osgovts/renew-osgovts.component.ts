@@ -26,22 +26,27 @@ export class RenewOsgovtsComponent implements OnInit {
   currentStep = 1;
   lastPage = false;
   form!: FormGroup;
-  billingPeriod: 'monthly' | 'yearly' = 'monthly';
-  arcadePlan = 9;
-  advancedPlan = 12;
-  proPlan = 15;
-  onlineService = 1;
-  storage = 2;
-  customProfile = 2;
-  total = 9;
+  lastGovNumber = '';
+  lastPolicySeria = '';
+  lastPolicyNumber = '';
   
   ngOnInit() {
     this.form = new FormGroup({
-      // name: new FormControl(null, [
-      //   Validators.required,
-      //   Validators.minLength(2),
-      //   Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
-      // ]),
+      policySeria: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(6),
+      ]),
+      policyNumber: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(10),
+      ]),
+      govNumber: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(8),
+      ]),
       // email: new FormControl(null, [Validators.required, Validators.email]),
       // phone: new FormControl(null, [
       //   Validators.required,
@@ -60,27 +65,6 @@ export class RenewOsgovtsComponent implements OnInit {
     });
   }
 
-  changeBillingPeriod() {
-    let isYearly = this.form.controls['billingPeriod'].value;
-    if (isYearly) {
-      this.billingPeriod = 'yearly';
-      this.arcadePlan = 90;
-      this.advancedPlan = 120;
-      this.proPlan = 150;
-      this.onlineService = 10;
-      this.storage = 20;
-      this.customProfile = 20;
-    } else {
-      this.billingPeriod = 'monthly';
-      this.arcadePlan = 9;
-      this.advancedPlan = 12;
-      this.proPlan = 15;
-      this.onlineService = 1;
-      this.storage = 2;
-      this.customProfile = 2;
-    }
-  }
-
   onSubmit() {
     this.lastPage = true;
     this.form.reset();
@@ -88,24 +72,87 @@ export class RenewOsgovtsComponent implements OnInit {
 
   changePage(isNextPage: boolean) {
     console.log("changePage");
-    // const addOns =
-    //   (this.form.get('onlineService')?.value && this.onlineService) +
-    //   (this.form.get('storage')?.value && this.storage) +
-    //   (this.form.get('customProfile')?.value && this.customProfile);
-
     if (!isNextPage) {
       return this.currentStep--;
     } else {
-      // if (this.currentStep === 3) {
-      //   if (this.form.get('plan')?.value === 'arcadePlan') {
-      //     this.total = this.arcadePlan + addOns;
-      //   } else if (this.form.get('plan')?.value === 'advanced') {
-      //     this.total = this.advancedPlan + addOns;
-      //   } else {
-      //     this.total = this.proPlan + addOns;
-      //   }
-      // }
       return this.currentStep++;
+    }
+  }
+
+  onPolicySeriaChange(event: any) {
+    const policySeriaControl = this.form.get('policySeria');
+    const newValue = event.target.value;
+    console.log('txt ' + event.target.value);
+    
+    if (policySeriaControl)
+    {
+      if (newValue.length > 6){
+        policySeriaControl.setValue(this.lastPolicySeria);
+      }
+      else if (!/^[a-zA-Z]*$/.test(newValue)) {
+        policySeriaControl.setValue(newValue.replace(/[^a-zA-Z]/g, ''));
+      } 
+      else {
+        this.lastPolicySeria = newValue.toUpperCase();
+        policySeriaControl.setValue(this.lastPolicySeria);
+      }
+    }
+  }
+
+  onPolicyNumberChange(event: any) {
+    const policyNumberControl = this.form.get('policyNumber');
+    const newValue = event.target.value;
+    console.log('txt ' + event.target.value);
+    
+    if (policyNumberControl)
+    {
+      if (newValue.length > 6){
+        policyNumberControl.setValue(this.lastPolicyNumber);
+      }
+      else if (!/^[0-9]*$/.test(newValue)) {
+        policyNumberControl.setValue(newValue.replace(/[^0-9]/g, ''));
+      } 
+      else {
+        this.lastPolicyNumber = newValue;
+        policyNumberControl.setValue(this.lastPolicyNumber);
+      }
+    }
+  }
+
+  onGovNumberChange(event: any) {
+    const inputValue = event.target.value;
+    const policyGovControl = this.form.get('govNumber');
+    console.log('inputValue ' + inputValue);
+
+    if (policyGovControl) {
+      if (inputValue.length === 0)
+      {
+        this.lastGovNumber = '';
+        policyGovControl.setValue(this.lastGovNumber);
+        return
+      }
+
+      const validPatterns = [
+        /^\d{2}[a-zA-Z]\d{3}[a-zA-Z]{2}$/,
+        /^\d{2}[a-zA-Z]\d{3}[a-zA-Z]{1}$/,
+        /^\d{2}[a-zA-Z]\d{3}$/,
+        /^\d{2}[a-zA-Z]\d{2}$/,
+        /^\d{2}[a-zA-Z]\d{1}$/,
+        /^\d{2}[a-zA-Z]$/,
+        /^\d{2}$/,
+        /^\d{1}$/,
+      ];
+
+      for (let i = 0; i < validPatterns.length; i++) {
+        if (inputValue.length === 8 - i && validPatterns[i].test(inputValue)) {
+          this.lastGovNumber = inputValue.toUpperCase();
+          policyGovControl.setValue(this.lastGovNumber);
+          return;
+        }
+      }
+
+      // If none of the patterns match, revert to the previous value
+      policyGovControl.setValue(this.lastGovNumber);
     }
   }
 }
