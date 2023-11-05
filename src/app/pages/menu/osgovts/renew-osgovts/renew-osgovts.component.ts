@@ -37,18 +37,18 @@ export class RenewOsgovtsComponent implements OnInit {
   
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
-      ]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      phone: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(
-          '^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'
-        ),
-      ]),
+      // name: new FormControl(null, [
+      //   Validators.required,
+      //   Validators.minLength(2),
+      //   Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
+      // ]),
+      // email: new FormControl(null, [Validators.required, Validators.email]),
+      // phone: new FormControl(null, [
+      //   Validators.required,
+      //   Validators.pattern(
+      //     '^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'
+      //   ),
+      // ]),
 
       plan: new FormControl('arcadePlan'),
 
@@ -87,23 +87,24 @@ export class RenewOsgovtsComponent implements OnInit {
   }
 
   changePage(isNextPage: boolean) {
-    const addOns =
-      (this.form.get('onlineService')?.value && this.onlineService) +
-      (this.form.get('storage')?.value && this.storage) +
-      (this.form.get('customProfile')?.value && this.customProfile);
+    console.log("changePage");
+    // const addOns =
+    //   (this.form.get('onlineService')?.value && this.onlineService) +
+    //   (this.form.get('storage')?.value && this.storage) +
+    //   (this.form.get('customProfile')?.value && this.customProfile);
 
     if (!isNextPage) {
       return this.currentStep--;
     } else {
-      if (this.currentStep === 3) {
-        if (this.form.get('plan')?.value === 'arcadePlan') {
-          this.total = this.arcadePlan + addOns;
-        } else if (this.form.get('plan')?.value === 'advanced') {
-          this.total = this.advancedPlan + addOns;
-        } else {
-          this.total = this.proPlan + addOns;
-        }
-      }
+      // if (this.currentStep === 3) {
+      //   if (this.form.get('plan')?.value === 'arcadePlan') {
+      //     this.total = this.arcadePlan + addOns;
+      //   } else if (this.form.get('plan')?.value === 'advanced') {
+      //     this.total = this.advancedPlan + addOns;
+      //   } else {
+      //     this.total = this.proPlan + addOns;
+      //   }
+      // }
       return this.currentStep++;
     }
   }
