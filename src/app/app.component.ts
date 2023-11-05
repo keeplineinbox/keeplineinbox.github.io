@@ -1,4 +1,4 @@
-import {Component, effect, OnInit, signal} from '@angular/core';
+import {Component, Renderer2, OnInit, signal} from '@angular/core';
 import { NgIf} from '@angular/common';
 import { RouterOutlet} from '@angular/router';
 import { BackButton } from '@twa-dev/types';
@@ -17,12 +17,21 @@ export class AppComponent implements OnInit {
   
   backButton: BackButton = window.Telegram.WebApp?.BackButton;
   isDark = window.Telegram.WebApp?.colorScheme == 'light' ? false : true;
-
-  constructor()
+  isTG = window.Telegram.WebApp == null;
+  ///isDark = false;
+  
+  constructor(private renderer: Renderer2)
   { 
-    effect(() => {
-      window.localStorage.setItem('darkMode', JSON.stringify(this.isDark));
-    });
+    this.isDark == true? this.renderer.addClass(document.body, 'dark') :  this.renderer.removeClass(document.body, 'dark');
+    if(this.isTG)
+    {
+      this.renderer.removeClass(document.body, 'bg-white');
+      this.renderer.removeClass(document.body, 'bg-white');
+    }
+    else
+    {
+      this.isDark == true? this.renderer.addClass(document.body, 'bg-black') : this.renderer.addClass(document.body, 'bg-white');
+    }
   }
 
   ngOnInit(): void {

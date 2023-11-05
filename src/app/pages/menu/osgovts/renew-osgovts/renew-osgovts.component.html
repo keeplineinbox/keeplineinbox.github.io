@@ -71,7 +71,7 @@
         <nav [ngClass]="{ 'flex-row-reverse': currentStep === 1 }" 
         class="mt-10 text-base flex justify-between bg-neutral-white xl:relative xl:p-0 xl:mb-5 xl:min-w-[28.125rem] xl:max-w-[28.125rem]" >
             <button *ngIf="currentStep >= 2" (click)="changePage(false)" type="button"
-            class="block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold hover:bg-gray-200 dark:hover:bg-white-100/[.5] text-gray-900 dark:text-gray-100" >
+            class="block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold hover:bg-gray-200 dark:hover:bg-white/[.3] text-gray-900 dark:text-gray-100" >
                 Go Back
             </button>
             <button [disabled]="form.invalid" *ngIf="currentStep !== 4" (click)="changePage(true)" type="button"
