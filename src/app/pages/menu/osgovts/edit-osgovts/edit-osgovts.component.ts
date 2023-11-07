@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {InsuranceForm} from '../../../../core/models/insurance-form';
+import {InsuranceForm} from '../../../../core/models/eosgouz/osgovts/insuranceForm';
 import {ApiService} from '../../../../core/services/api.service';
 
 @Component({

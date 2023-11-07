@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
-import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import {FormGroup, Validators, ReactiveFormsModule, FormControl} from '@angular/forms';
-import {InsuranceForm} from 'src/app/core/models/insurance-form';
+import {InsuranceForm} from 'src/app/core/models/eosgouz/osgovts/insuranceForm';
 import {ApiService} from 'src/app/core/services/api.service';
+import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.component';
 import { StepperComponent } from 'src/app/shared/components/stepper/stepper.component';
 
 @Component({
   selector: 'app-renew-osgovts',
   templateUrl: './renew-osgovts.component.html',
-  styleUrls: ['./renew-osgovts.component.scss'],
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     StepperComponent,
     ReactiveFormsModule,
     CommonModule,
+    SpinnerComponent
   ],
   providers: [
     ApiService,
@@ -22,6 +23,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RenewOsgovtsComponent implements OnInit {
+  public isLoading = signal(false);
+  insuranceForm: InsuranceForm | undefined;
   steps: number[] = [1, 2, 3, 4];
   currentStep = 1;
   lastPage = false;
@@ -29,6 +32,8 @@ export class RenewOsgovtsComponent implements OnInit {
   lastGovNumber = '';
   lastPolicySeria = '';
   lastPolicyNumber = '';
+
+  constructor(private service: ApiService) { }
   
   ngOnInit() {
     this.form = new FormGroup({
@@ -71,10 +76,20 @@ export class RenewOsgovtsComponent implements OnInit {
   }
 
   changePage(isNextPage: boolean) {
-    console.log("changePage");
+    this.isLoading.set(true);
     if (!isNextPage) {
       return this.currentStep--;
     } else {
+      if (this.currentStep === 1){
+        this.service.getPolicyBySeriaAndNumberAndVehicleNumber(this.lastPolicySeria, this.lastPolicyNumber, this.lastGovNumber)
+        .subscribe((result)=>{
+          if (result.error === 0 && result.data) {
+            this.insuranceForm = result.data;
+          }
+        
+          this.isLoading.set(false);
+        })
+      }
       return this.currentStep++;
     }
   }
